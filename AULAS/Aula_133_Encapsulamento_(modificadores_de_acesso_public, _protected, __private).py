@@ -10,29 +10,31 @@
 #     "name mangling" (desconfiguracao de nomes) em python
 #     so deve ser usado na classe em que foi declarado.
 
+from functools import partial
+
+
 class Foo:
-    def __init__(self):             # O self referece a classe de instancia
-        self.public = 'isso e publico'
-        self._protected = 'isso e protegido'
-        self.__exemplo = 'isso e private'
+    def __init__(self):
+        self.public = 'isso é público'
+        self._protected = 'isso é protegido'
+        self.__exemplo = 'isso é private'
 
     def metodo_publico(self):
         # self._metodo_protected()
         # print(self._protected)
-        print(self._protected)
+        print(self.__exemplo)
+        self.__metodo_private()
         return 'metodo_publico'
 
     def _metodo_protected(self):
         print('_metodo_protected')
         return '_metodo_protected'
 
-    def _metodo_private(self):
-        print('_metodo_private')
-        return '_metodo_private'
+    def __metodo_private(self):
+        print('__metodo_private')
+        return '__metodo_private'
 
 
 f = Foo()
-# print(f._protected)
-# print(f.public())
+# print(f.public)
 print(f.metodo_publico())
-print(f._Foo__metodo_private)
